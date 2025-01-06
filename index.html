@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/index.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/index.css">
     <meta name="description"
-        content="Secure and easy credit card payment form. Enter your details with confidence and enjoy a smooth, hassle-free transaction process. Our advanced security measures ensure your data is protected at all times.">
+        content="The Credit Card Form App is a simple web application that allows users to enter and validate credit card information. It provides a visually appealing interface to input and view credit card details, including the card number, cardholder name, expiration date, and CVV.">
     <link rel="icon" type="image/x-icon" href="../../assets/favicons/favicon-16x16.png">
     <link rel="icon" type="image/x-icon" href="../../assets/favicons/favicon-32x32.png">
     <meta name="author" content="nvmwhoiam">
@@ -18,7 +18,7 @@
 
 <body>
 
-    <main>
+    <main class="main_container">
 
         <div class="credit_card_container">
 
@@ -26,8 +26,8 @@
 
                 <div class="credit_card_front">
 
-                    <img src="assets/svgs/contactless.svg" alt="wifi svg" class="wifi_icon">
-                    <img src="assets/svgs/unknown.svg" alt="credit card svg" class="card_brand_logo">
+                    <img src="assets/svgs/contactless.svg" class="wifi_icon" alt="wifi svg">
+                    <img src="assets/svgs/unknown.svg" class="card_brand_logo" alt="credit card svg">
 
                     <div class="credit_card_number_container">
                         <h3 class="title">Card Number</h3>
@@ -78,7 +78,7 @@
                         Card number
                     </label>
 
-                    <input type="text" name="credit_card_numbers" id="cardNumberInput" value="" inputmode="numeric"
+                    <input type="text" name="credit_card_numbers" id="cardNumberInput" inputmode="numeric"
                         maxlength="16" placeholder="**** **** **** 3221" required>
 
                 </div>
@@ -106,14 +106,13 @@
                     <div class="form_input">
 
                         <label class="credit_card_cvv" for="cvvInput"> CVV</label>
-
                         <input type="text" placeholder="***" name="cvv" id="cvvInput" inputmode="numeric" maxlength="3"
                             required>
                     </div>
 
                 </div>
 
-                <button type="submit" class="btn_btn">Save</button>
+                <button type="submit" class="btn_primary" aria-label="Save">Save</button>
 
             </form>
 
@@ -121,7 +120,7 @@
 
     </main>
 
-    <script src="assets/js/index.js"></script>
+    <script src="/assets/js/index.js"></script>
 
 </body>
 
