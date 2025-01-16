@@ -11,6 +11,7 @@
     <link rel="icon" type="image/x-icon" href="../../assets/img/favicon-16x16.png">
     <link rel="icon" type="image/x-icon" href="../../assets/img/favicon-32x32.png">
     <link rel="canonical" href="https://lynqis.io/demo/credit-card-form">
+    <meta name="robots" content="index, follow">
     <meta name="author" content="nvmwhoiam">
     <meta name="keywords"
         content="credit card form, secure payment, online payment, payment form, credit card security, easy payment, hassle-free transaction, secure checkout, payment processing, credit card details">
@@ -25,62 +26,66 @@
 
             <div class="credit_card">
 
-                <div class="credit_card_front">
+                <div class="front_container">
 
-                    <img src="assets/svgs/contactless.svg" class="wifi_icon" alt="wifi svg">
-                    <img src="assets/svgs/unknown.svg" class="card_brand_logo" alt="credit card svg">
+                    <img src="assets/svgs/contactless.svg" class="wifi_icon" alt="Wifi svg">
 
-                    <div class="credit_card_number_container">
+                    <img src="assets/svgs/unknown.svg" class="card_brand_logo" alt="Credit card svg">
+
+                    <div class="number_body">
+
                         <h3 class="title">Card Number</h3>
-                        <div id="cardNumber" class="card_number">
+
+                        <div class="card_number" data-view="card_number">
                             **** **** **** 3221
                         </div>
+
                     </div>
 
-                    <div class="credit_card_holder_container">
+                    <div class="holder_body">
                         <h3 class="title">Card Holder</h3>
-                        <div class="card_holder_name" id="cardHolderName">Mr. John Doe</div>
+                        <div class="card_holder_name" data-view="card_holder">Mr. John Doe</div>
                     </div>
 
-                    <div class="credit_card_expiry_container">
+                    <div class="expiry_body">
                         <h3 class="title">Expires</h3>
-                        <span class="month" id="expiryMonth">00</span>
+                        <span class="month" data-view="expiry_month">00</span>
                         <b>/</b>
-                        <span class="year" id="expiryYear">00</span>
+                        <span class="year" data-view="expiry_year">00</span>
                     </div>
 
                 </div>
 
-                <div class="credit_card_back">
+                <div class="back_container">
                     <div class="stripe"></div>
                     <div class="cvvStripe">
-                        <span class="cvv" id="cvv">***</span>
+                        <span class="cvv" data-view="cvv">***</span>
                     </div>
                 </div>
 
             </div>
 
-            <form method="post" action="#" autocomplete="off" id="creditCardForm" class="credit_card_form">
+            <form method="post" action="#" autocomplete="off" class="credit_card_form" data-form="credit_card">
 
                 <div class="form_input">
 
-                    <label class="credit_card_name" for="cardHolderInput">
+                    <label class="credit_card_name" for="card_holder">
                         Card Holder
                     </label>
 
-                    <input type="text" name="credit_card_name" id="cardHolderInput" placeholder="Mr. John Doe"
-                        maxlength="30" required>
+                    <input type="text" name="card_holder" id="card_holder" placeholder="Mr. John Doe" maxlength="30"
+                        required>
 
                 </div>
 
                 <div class="form_input">
 
-                    <label class="credit_card_number" for="cardNumberInput">
+                    <label class="credit_card_number" for="card_number">
                         Card number
                     </label>
 
-                    <input type="text" name="credit_card_numbers" id="cardNumberInput" inputmode="numeric"
-                        maxlength="16" placeholder="**** **** **** 3221" required>
+                    <input type="text" name="card_number" id="card_number" inputmode="numeric" maxlength="16"
+                        placeholder="**** **** **** 3221" required>
 
                 </div>
 
@@ -88,17 +93,18 @@
 
                     <div class="form_input">
 
-                        <label class="credit_card_month" for="expiryMonthInput">
+                        <label class="credit_card_month" for="expiry_month">
                             Expires
                         </label>
 
                         <div class="form_input_container">
 
-                            <select class="month" aria-label="Card expiry maxlength" name="credit_card_month"
-                                id="expiryMonthInput" required> </select>
+                            <select class="month" aria-label="Card expiry month" name="expiry_month" id="expiry_month"
+                                required>
+                            </select>
 
-                            <select class="credit_card_year" aria-label="Card expiry year" name="expiryYear"
-                                id="expiryYearInput" required> </select>
+                            <select class="credit_card_year" aria-label="Card expiry year" name="expiry_year" required>
+                            </select>
 
                         </div>
 
@@ -106,8 +112,8 @@
 
                     <div class="form_input">
 
-                        <label class="credit_card_cvv" for="cvvInput"> CVV</label>
-                        <input type="text" placeholder="***" name="cvv" id="cvvInput" inputmode="numeric" maxlength="3"
+                        <label class="credit_card_cvv" for="card_cvv"> CVV</label>
+                        <input type="text" placeholder="***" name="cvv" id="card_cvv" inputmode="numeric" maxlength="3"
                             required>
                     </div>
 

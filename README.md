@@ -2,66 +2,81 @@
 
 ## Overview
 
-The **Credit Card Form App** is a simple web application that allows users to enter and validate credit card information. It provides a visually appealing interface to input and view credit card details, including the card number, cardholder name, expiration date, and CVV.
+The **Credit Card Form App** is a web application designed for users to easily input and validate credit card information. It provides a visually appealing and user-friendly interface to input and securely view details such as the card number, cardholder name, expiration date, and CVV.
 
-The application is built using HTML, CSS, and JavaScript to provide a seamless user experience for entering credit card information securely.
+Built with HTML, CSS, and JavaScript, this app ensures a smooth and secure experience for entering sensitive credit card details.
 
 ## Features
 
-- **Credit Card Validation**: The app validates credit card numbers using regular expressions to detect card brands such as Visa, MasterCard, American Express, and more.
-- **Real-time Formatting**: As the user enters the credit card number, it is formatted in real-time to make it visually appealing and mask sensitive information.
-- **Expiration Date Selection**: Users can select the card's expiration month and year from dropdown menus for a convenient input method.
-- **CVV Input**: The app supports entering the Card Verification Value (CVV) and displays it as asterisks for security.
-- **Card Brand Recognition**: The app dynamically recognizes the card brand based on the entered credit card number and displays the corresponding card logo.
-- **Form Submission**: When users submit the form, the app collects the entered information and can be configured to perform actions like sending the data to a server for further processing.
-- **Enhanced Security Feature**:
-  - **Masked Display**: After entering the CVV and card number and leaving the input field, the displayed characters are masked for privacy.
-    - Amex cards display only the last 5 digits, with the rest replaced by '\*'.
-    - Visa and MasterCard cards display only the last 4 digits, with the rest replaced by '\*'.
-    - The CVV input is fully masked after the user leaves the input field.
-  - **Click-to-Reveal**: Users can click on the masked input fields to reveal the actual numbers they entered.
-- **Automated Expiry Date**:
-  - The expiry date is automatically set to 10 years from the current date.
-  - Month selection dynamically adjusts based on the current date to prevent selection of an expired month.
-  - Year selection is automated to be 10 years from the current year.
+- **Credit Card Validation**: The app validates credit card numbers using regular expressions to detect common card brands such as Visa, MasterCard, American Express, and others.
+- **Real-time Formatting**: The card number is formatted as the user types, ensuring the information is easy to read and secure by masking sensitive digits.
+- **Expiration Date Selection**: Convenient dropdown menus for selecting the card's expiration month and year, with automated year handling for the next 10 years.
+- **Masked CVV Input**: The CVV is entered and displayed as asterisks for security purposes.
+- **Dynamic Card Brand Recognition**: The app recognizes the credit card brand (e.g., Visa, MasterCard) based on the card number and displays the appropriate logo.
+- **Masked Input for Security**: After the user inputs their CVV and card number, the values are masked for privacy and can be clicked to reveal the original numbers.
+- **Form Submission**: When the user submits the form, the app collects and can log the data, ready for integration with backend services.
+- **Automatic Expiry Date Adjustment**: The expiry year is set for the next 10 years, and the month dropdown is updated based on the current date to prevent expired selections.
 
 ## Installation
 
 To run the Credit Card Form App locally, follow these steps:
 
-1. Clone this repository to your local machine:
+1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/nvmwhoiam/Credit-card-form.git
+   git clone https://github.com/nvmwhoiam/credit-card-form.git
    ```
 
-2. Open the `index.html` file in your web browser.
+2. Open the `index.html` file in your browser.
 
-3. You can also serve the app using a local development server if you have one available.
+3. Optionally, you can serve the app using a local development server for a more dynamic experience.
 
 ## Usage
 
 1. Open the app in your web browser.
 
-2. Enter the credit card details in the provided input fields:
+2. Enter the credit card information in the input fields:
 
-   - **Card Holder**: Enter the name on the credit card.
+   - **Card Holder**: Enter the cardholder's name.
    - **Card Number**: Enter the 16-digit credit card number.
-   - **Expiration Date**: Select the card's expiration month and year.
-   - **CVV**: Enter the Card Verification Value (CVV) found on the back of the card.
+   - **Expiration Date**: Select the card’s expiration month and year.
+   - **CVV**: Enter the CVV from the back of the card.
 
-3. As you enter the card number, the app will automatically format and recognize the card brand.
+3. As you enter the information:
 
-4. Click the "Save" button to submit the form. You can customize this functionality to suit your needs.
+   - The card number will be formatted automatically, and the card brand will be recognized.
+   - The expiration month will update based on the current date.
+   - CVV and card number will be masked for security.
+
+4. Press the "Save" button to submit the form. You can customize this functionality for backend integration or logging.
 
 ## Customization
 
-You can customize the app's behavior and appearance by modifying the JavaScript code in the `assets/js/index.js` file and the CSS in the `assets/css/index.css` file. Feel free to adapt it to your specific requirements.
+You can easily customize the app's appearance and behavior by editing the following files:
 
-## License
+- **JavaScript**: Modify `assets/js/index.js` for logic changes or additional form handling.
+- **CSS**: Update `assets/css/index.css` to change the look and feel of the app.
 
-This Credit Card Form App is open-source and available under the [MIT License](LICENSE).
+Feel free to adapt this app to your specific needs!
 
 ## Acknowledgments
 
-- Credit card brand detection and validation are based on commonly used regular expressions found in various online resources.
+- Credit card validation and detection are based on widely used regular expressions found in various online resources.
+
+## Contact
+
+If you have any questions or need assistance, please do not hesitate to reach out. I apologize if any part of this setup is not clear; this is my first major project, and I am putting in continuous effort to improve it. Feel free to contact me at [info@lynqis.io](mailto:info@lynqis.io) or open an issue on the [GitHub Repository](https://github.com/nvmwhoiam/credit-card-form)
+.
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Author
+
+- nvmwhoiam
+- GitHub: [GitHub Profile](https://github.com/nvmwhoiam/)

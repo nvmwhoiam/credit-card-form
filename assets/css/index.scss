@@ -2,9 +2,9 @@
 @import "./general/base.scss";
 
 .main_container {
-    @include Dflex(center);
     height: 100vh;
     padding: var(--md-p);
+    @include Dflex(center);
 
     .credit_card_container {
         width: 100%;
@@ -19,13 +19,15 @@
             position: relative;
         }
 
-        .credit_card_front,
-        .credit_card_back {
+        .front_container,
+        .back_container {
             width: 100%;
             height: 100%;
             padding: var(--md-p);
             border-radius: var(--border-radius-light);
-            background: linear-gradient(to right, var(--accent-color), rgb(133, 105, 161));
+            background: #aa4b6b;
+            background: -webkit-linear-gradient(to right, #3b8d99, #6b6b83, #aa4b6b);
+            background: linear-gradient(to right, #3b8d99, #6b6b83, #aa4b6b);
             position: absolute;
             backface-visibility: hidden;
             transition: all var(--animation-speed);
@@ -37,7 +39,7 @@
             }
         }
 
-        .credit_card_front {
+        .front_container {
 
             .wifi_icon,
             .card_brand_logo {
@@ -53,7 +55,7 @@
                 @include position(absolute, $top: var(--md-p), $right: var(--md-p));
             }
 
-            .credit_card_number_container {
+            .number_body {
                 @include position(absolute, $top: 50%);
                 transform: translateY(-50%);
                 width: 280px;
@@ -64,35 +66,37 @@
                 }
             }
 
-            .credit_card_holder_container,
-            .credit_card_expiry_container {
+            .holder_body,
+            .expiry_body {
                 position: absolute;
                 bottom: var(--md-p);
             }
 
-            .credit_card_holder_container {
+            .holder_body {
                 left: var(--md-p);
                 text-transform: capitalize;
             }
 
-            .credit_card_expiry_container {
+            .expiry_body {
                 right: var(--md-p);
             }
         }
 
-        .credit_card_back {
+        .back_container {
             transform: rotateY(180deg);
 
-            .stripe {
+            .stripe,
+            .cvvStripe {
                 width: 100%;
                 height: 30px;
+            }
+
+            .stripe {
                 background-color: #232f34;
                 @include position(absolute, $top: var(--md-p), $left: 0);
             }
 
             .cvvStripe {
-                width: 100%;
-                height: 30px;
                 background-color: #d4f1f4;
                 @include position(absolute, $top: 50%, $left: 0);
                 transform: translateY(-50%);
@@ -102,40 +106,38 @@
                     transform: translateY(-50%);
                     color: var(--background-color-secondary);
                 }
-
             }
         }
 
-        .credit_card:hover .credit_card_back {
-            transform: rotateY(0);
-        }
+        .credit_card {
+            &.back_visible {
+                .front_container {
+                    transform: rotateY(-180deg);
+                }
 
-        .credit_card.back_visible {
+                .back_container {
+                    transform: rotateY(0);
 
-            .credit_card_front {
-                transform: rotateY(-180deg);
+                }
             }
 
-            .credit_card_back {
-                transform: rotateY(0);
+            &:hover {
+                .back_container {
+                    transform: rotateY(0);
+                }
 
+                .front_container {
+                    transform: rotateY(-180deg);
+                }
             }
-        }
-
-        .credit_card:hover .credit_card_front {
-            transform: rotateY(-180deg);
         }
     }
 
     .credit_card_form {
         width: 100%;
-        border: 1px solid var(--border-color);
-        border-radius: var(--border-radius-light);
         display: flex;
         flex-direction: column;
         gap: var(--md-p);
-        margin-top: -102px;
-        padding: 122px var(--md-p) var(--md-p) var(--md-p);
 
         label {
             display: block;
@@ -175,7 +177,18 @@
         }
     }
 
-    @media only screen and (max-width: 768px) {}
+    @media only screen and (max-width: 768px) {
+        .credit_card_container {
+            gap: var(--xl-p);
+        }
+    }
 
-    @media only screen and (min-width: 769px) {}
+    @media only screen and (min-width: 769px) {
+        .credit_card_form {
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-light);
+            margin-top: -102px;
+            padding: 122px var(--md-p) var(--md-p) var(--md-p);
+        }
+    }
 }
