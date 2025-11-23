@@ -1,10 +1,6 @@
 # Credit Card Form App
 
-## Overview
-
-The **Credit Card Form App** is a web application designed for users to easily input and validate credit card information. It provides a visually appealing and user-friendly interface to input and securely view details such as the card number, cardholder name, expiration date, and CVV.
-
-Built with HTML, CSS, and JavaScript, this app ensures a smooth and secure experience for entering sensitive credit card details.
+A secure, responsive credit card form with real-time validation, card detection, and mobile-friendly UI. No dependencies, 100% client-side, MIT-licensed.
 
 ## Features
 
@@ -19,17 +15,15 @@ Built with HTML, CSS, and JavaScript, this app ensures a smooth and secure exper
 
 ## Installation
 
-To run the Credit Card Form App locally, follow these steps:
-
-1. Clone the repository to your local machine:
-
-   ```bash
+1. Clone the repository:
+   ```sh
    git clone https://github.com/nvmwhoiam/credit-card-form.git
    ```
-
-2. Open the `index.html` file in your browser.
-
-3. Optionally, you can serve the app using a local development server for a more dynamic experience.
+2. Navigate to the project directory:
+   ```sh
+   cd credit-card-form
+   ```
+3. Open `index.html` in your web browser to view the application.
 
 ## Usage
 
@@ -50,18 +44,57 @@ To run the Credit Card Form App locally, follow these steps:
 
 4. Press the "Save" button to submit the form. You can customize this functionality for backend integration or logging.
 
-## Customization
+## Technical Improvements
 
-You can easily customize the app's appearance and behavior by editing the following files:
+1. Card Number Input Improvements
 
-- **JavaScript**: Modify `assets/js/index.js` for logic changes or additional form handling.
-- **CSS**: Update `assets/css/index.css` to change the look and feel of the app.
+- Dynamic spacing: Fixed spacing in card number input for better readability and formatting
+- Smart masking:
+  - When input loses focus:
+    - Shows only last 4 digits for most card types (Visa, Mastercard, etc.)
+    - Shows last 5 digits for Amex cards (following industry standards)
+  - When input gains focus:
+    - Shows full card number as entered by user
+    - Maintains proper spacing for the card type
 
-Feel free to adapt this app to your specific needs!
+2. Expiration Date Validation
 
-## Acknowledgments
+   - Month validation:
 
-- Credit card validation and detection are based on widely used regular expressions found in various online resources.
+     - If current year is selected:
+     - Only shows months from current month onward - Example: In May 2023, shows only months 5-12 (May-December)
+
+   - For future years:
+
+     - Shows all 12 months
+
+   - Year validation:
+
+     - Only shows current and future years
+     - Automatically adjusts month options based on selected year
+
+3. Security Improvements
+
+   - Reduced sensitive data exposure:
+     - Automatic masking when field not active
+     - Only shows minimum required digits for verification
+     - Prevents shoulder surfing of full card numbers
+
+4. User Experience Benefits
+   - More intuitive input formatting
+   - Prevents invalid expiration date entries
+   - Better security without sacrificing usability
+   - Clear visual feedback during interaction
+
+These improvements follow PCI compliance best practices while maintaining a smooth user experience for payment processing.
+
+## Screenshots
+
+![Alt text](https://sadevworks.com/assets/img/projects/credit-card-form.png "a title")
+
+## Live Demo
+
+[Live Demo](https://sadevworks.com/demo/credit-card-form)
 
 ## Contact
 

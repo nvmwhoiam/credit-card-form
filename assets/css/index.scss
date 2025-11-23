@@ -1,14 +1,8 @@
+@import "./general/root.css";
+@import "./general/base.css";
 @import "./general/mixin.scss";
-@import "./general/base.scss";
 
 .main_container {
-    height: 100vh;
-    padding: var(--md-p);
-
-    .header_container {
-        margin-bottom: var(--md-p);
-    }
-
     .credit_card_container {
         width: 100%;
         max-width: 500px;
@@ -16,6 +10,7 @@
         flex-direction: column;
         align-items: center;
         margin: 0 auto;
+        padding: var(--md-p);
 
         .credit_card {
             width: 320px;
@@ -79,6 +74,15 @@
             .holder_body {
                 left: var(--md-p);
                 text-transform: capitalize;
+
+                .card_holder_name {
+                    max-width: 200px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    word-break: keep-all;
+                    display: block;
+                }
             }
 
             .expiry_body {
@@ -193,6 +197,27 @@
             border-radius: var(--border-radius-light);
             margin-top: -102px;
             padding: 122px var(--md-p) var(--md-p) var(--md-p);
+        }
+    }
+}
+
+.header_container,
+.footer_container {
+    text-align: center;
+
+    @media only screen and (max-width: 768px) {
+        & {
+            padding: var(--md-p);
+
+            .app_title {
+                font-size: var(--font-size-2xlarge);
+            }
+        }
+    }
+
+    @media only screen and (min-width: 768px) {
+        & {
+            padding: var(--xl-p) var(--md-p);
         }
     }
 }

@@ -10,13 +10,12 @@
         content="A secure, responsive credit card form with real-time validation, card detection, and mobile-friendly UI. No dependencies, 100% client-side, MIT-licensed.">
     <link rel="icon" type="image/x-icon" href="../../assets/img/favicon-16x16.png">
     <link rel="icon" type="image/x-icon" href="../../assets/img/favicon-32x32.png">
-    <link rel="canonical" href="https://sadevworks.com/demo/credit-card-form/">
     <meta name="author" content="nvmwhoiam">
     <meta name="keywords"
-        content="credit card form, secure payment, online payment, payment form, credit card security, easy payment, hassle-free transaction, secure checkout, payment processing, credit card details">
+        content="credit card payment form, secure payment form, online credit card form, credit card checkout form, payment form template, credit card validation">
 
-    <meta name="robots" content="index, follow">
-    <title>Credit Card Form | SADevWorks.com</title>
+    <meta name="robots" content="noindex, nofollow">
+    <title>Smart Credit Card Form with Real-time Validation</title>
 </head>
 
 <body>
@@ -24,7 +23,7 @@
     <main class="main_container">
 
         <header class="header_container">
-            <h1>Credit Card Form</h1>
+            <h1 class="app_title">Credit Card Form </h1>
         </header>
 
         <div class="credit_card_container">
@@ -39,8 +38,7 @@
 
                     <div class="number_body">
 
-                        <h3 class="title">Card Number</h3>
-
+                        <h2 class="title">Card Number</h2>
                         <div class="card_number" data-view="card_number">
                             **** **** **** 3221
                         </div>
@@ -48,15 +46,17 @@
                     </div>
 
                     <div class="holder_body">
-                        <h3 class="title">Card Holder</h3>
-                        <div class="card_holder_name" data-view="card_holder">Mr. John Doe</div>
+                        <h2 class="title">Card Holder</h2>
+                        <h3 class="card_holder_name" data-view="card_holder">Mr. John Doe</h3>
                     </div>
 
                     <div class="expiry_body">
-                        <h3 class="title">Expires</h3>
-                        <span class="month" data-view="expiry_month">00</span>
-                        <b>/</b>
-                        <span class="year" data-view="expiry_year">00</span>
+                        <h2 class="title">Expires</h2>
+                        <h3 class="card_expiry_date">
+                            <span class="month" data-view="expiry_month">00</span>
+                            <b>/</b>
+                            <span class="year" data-view="expiry_year">00</span>
+                        </h3>
                     </div>
 
                 </div>
@@ -104,11 +104,10 @@
 
                         <div class="form_input_container">
 
-                            <select class="month" aria-label="Card expiry month" name="expiry_month" id="expiry_month"
-                                required>
+                            <select class="month" aria-label="Card expiry month" name="expiry_month" id="expiry_month">
                             </select>
 
-                            <select class="credit_card_year" aria-label="Card expiry year" name="expiry_year" required>
+                            <select class="credit_card_year" aria-label="Card expiry year" name="expiry_year">
                             </select>
 
                         </div>
@@ -117,8 +116,8 @@
 
                     <div class="form_input">
 
-                        <label class="credit_card_cvv" for="card_cvv"> CVV</label>
-                        <input type="text" placeholder="***" name="cvv" id="card_cvv" inputmode="numeric" maxlength="3"
+                        <label class="credit_card_cvv" for="card_cvv">CVV</label>
+                        <input type="text" name="cvv" id="card_cvv" inputmode="numeric" maxlength="3" placeholder="***"
                             required>
                     </div>
 
@@ -130,10 +129,18 @@
 
         </div>
 
+        <footer class="footer_container">
+
+            <p class="footer_content">
+                Copyright &copy; 2025. All Rights Reserved | Powered By <a href="https://sadevworks.com" hreflang="en"
+                    aria-label="Home page">SADevWorks</a>
+            </p>
+
+        </footer>
+
     </main>
 
     <script src="assets/js/index.js"></script>
-
 </body>
 
 </html>

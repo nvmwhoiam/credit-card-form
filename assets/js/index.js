@@ -40,7 +40,7 @@ expiryYear.innerText = currentYear.toString().slice(-2);
 
 function updateMonthOptions() {
     const currentInputYear = expiryYearInput.value;
-    const isCurrentYear = currentInputYear === currentYear.toString();
+    const isCurrentYear = currentInputYear === currentYear.toString().slice(-2);
 
     const startMonth = isCurrentYear ? currentMonth : 1;
     const endMonth = 12;
@@ -62,23 +62,35 @@ function updateMonthOptions() {
 
 updateMonthOptions();
 
-document.addEventListener("input", function (e) {
+document.addEventListener("input", (e) => {
     const cardNumberInput = e.target.closest('[name="card_number"]');
     if (cardNumberInput) {
-        const cardNumberValue = cardNumberInput.value;
-        const brand = creditCardValidator(cardNumberValue);
+        // Get raw value without spaces for processing
+        const rawValue = cardNumberInput.value.replace(/\s/g, '');
+        const brand = creditCardValidator(rawValue);
         let maskedNumbers = '';
+        let formattedValue = '';
 
-        if (cardNumberValue.length < 1) {
+        if (rawValue.length < 1) {
             maskedNumbers = cardNumberInput.getAttribute("placeholder");
         } else {
-            maskedNumbers = brand === "amex"
-                ? `${cardNumberValue.substr(0, 4).replace(/[0-9]/g, '*')} ${cardNumberValue.substr(4, 6).replace(/[0-9]/g, '*')} ${cardNumberValue.substr(10, 5)}`
-                : `${cardNumberValue.substr(0, 4).replace(/[0-9]/g, '*')} ${cardNumberValue.substr(4, 4).replace(/[0-9]/g, '*')} ${cardNumberValue.substr(8, 4).replace(/[0-9]/g, '*')} ${cardNumberValue.substr(12, 4)}`;
-            cardNumberInput.setAttribute("maxlength", brand === "amex" ? "15" : "16");
-        }
+            // Format with spaces based on card type
+            if (brand === "amex") {
+                // AMEX format: 4-6-5
+                formattedValue = rawValue.replace(/^(\d{0,4})(\d{0,6})(\d{0,5}).*/, '$1 $2 $3').trim();
+                maskedNumbers = `${rawValue.substr(0, 4).replace(/[0-9]/g, '*')} ${rawValue.substr(4, 6).replace(/[0-9]/g, '*')} ${rawValue.substr(10, 5)}`;
+                cardNumberInput.setAttribute("maxlength", "17"); // 15 digits + 2 spaces
+            } else {
+                // Standard format: 4-4-4-4
+                formattedValue = rawValue.replace(/(\d{4})(?=\d)/g, '$1 ').substr(0, 19); // 16 digits + 3 spaces
+                maskedNumbers = `${rawValue.substr(0, 4).replace(/[0-9]/g, '*')} ${rawValue.substr(4, 4).replace(/[0-9]/g, '*')} ${rawValue.substr(8, 4).replace(/[0-9]/g, '*')} ${rawValue.substr(12, 4)}`;
+                cardNumberInput.setAttribute("maxlength", "19"); // 16 digits + 3 spaces
+            }
 
-        cardNumber.innerText = maskedNumbers;
+            // Update the input value with proper formatting
+            cardNumberInput.value = formattedValue;
+            cardNumber.innerText = maskedNumbers;
+        }
 
         if (currentBrand !== brand) {
             document.querySelector(".card_brand_logo").src = `assets/svgs/${brand}.svg`;
@@ -124,7 +136,7 @@ document.addEventListener("focusout", function (e) {
         let cardNumberValue = cardNumberInput.value;
         const cardNumberLength = cardNumberInput.getAttribute("maxlength");
 
-        if (cardNumberValue.length === cardNumberLength) {
+        if (cardNumberValue.length === Number(cardNumberLength)) {
             originalCardNumber = cardNumberValue;
             cardNumberInput.value = maskCardNumber(cardNumberValue, cardNumberLength);
             isOriginalCardNumberFilled = true;
@@ -171,6 +183,7 @@ document.addEventListener("submit", function (e) {
                 expiryYear: expiryYearInput.value,
                 cvvInput: originalCvv,
             };
+
             console.log(formData);
         }
     }
@@ -193,17 +206,18 @@ function creditCardValidator(creditCardValue) {
 }
 
 function maskCardNumber(cardNumber, cardNumberLength) {
-    cardNumber = cardNumber.replace(/\s+/g, '').replace(/\D/g, '');
-    const digitsToMask = cardNumberLength === 16 ? 4 : 5;
-    let maskedDigits = "*".repeat(cardNumber.length - digitsToMask) + cardNumber.slice(-digitsToMask);
+    const digits = cardNumber.replace(/\D/g, '');
+    const isAmex = digits.length === 17; // AMEX has 15 digits + 2 spaces
+    const visibleDigits = isAmex ? digits.slice(-5) : digits.slice(-4);
 
-    if (cardNumberLength === 16) {
-        maskedDigits = maskedDigits.replace(/(.{4})(.{4})(.{4})/, '$1 $2 $3 ');
-    } else if (cardNumberLength === 15) {
-        maskedDigits = maskedDigits.replace(/(.{4})(.{6})(.{5})/, '$1  $2  $3');
+    if (cardNumberLength === 19) {
+        return `**** **** **** ${visibleDigits}`;
+    } else if (cardNumberLength === 17) {
+        return `**** ****** *${visibleDigits}`;
     }
 
-    return maskedDigits.trim();
+    const masked = digits.slice(0, -visibleDigits.length).replace(/\d/g, '*');
+    return masked.replace(/(.{4})(?=.)/g, '$1 ') + ' ' + visibleDigits;
 }
 
 function maskCVV(cvv) {
